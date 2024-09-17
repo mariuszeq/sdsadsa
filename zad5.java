@@ -1,29 +1,27 @@
-#include <iostream>
-#include <algorithm>
-using namespace std;
+import java.util.Arrays;
+import java.util.Scanner;
 
-int main() {
-    string slowo1, slowo2;
-    cout << "Podaj pierwsze słowo: ";
-    cin >> slowo1;
-    cout << "Podaj drugie słowo: ";
-    cin >> slowo2;
-
-    // Sprawdzanie długości słów
-    if (slowo1.length() != slowo2.length()) {
-        cout << "Słowa nie są anagramami." << endl;
-        return 0;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Wprowadź pierwsze słowo: ");
+        String word1 = scanner.nextLine();
+        System.out.println("Wprowadź drugie słowo: ");
+        String word2 = scanner.nextLine();
+        scanner.close();
+        
+        if (areAnagrams(word1, word2)) {
+            System.out.println("Słowa są anagramami.");
+        } else {
+            System.out.println("Słowa nie są anagramami.");
+        }
     }
-
-    // Sortowanie liter w obu słowach
-    sort(slowo1.begin(), slowo1.end());
-    sort(slowo2.begin(), slowo2.end());
-
-    if (slowo1 == slowo2) {
-        cout << "Słowa są anagramami." << endl;
-    } else {
-        cout << "Słowa nie są anagramami." << endl;
+    
+    public static boolean areAnagrams(String str1, String str2) {
+        char[] arr1 = str1.replaceAll("\\s", "").toLowerCase().toCharArray();
+        char[] arr2 = str2.replaceAll("\\s", "").toLowerCase().toCharArray();
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        return Arrays.equals(arr1, arr2);
     }
-
-    return 0;
 }
