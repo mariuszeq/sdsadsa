@@ -1,40 +1,31 @@
-#include <iostream>
-using namespace std;
+import java.util.Scanner;
 
-bool czyPalindrom(int liczba) {
-    string str = to_string(liczba);
-    int n = str.length();
-    for (int i = 0; i < n / 2; i++) {
-        if (str[i] != str[n - i - 1]) {
-            return false;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Wprowadź liczbę: ");
+        int number = scanner.nextInt();
+        scanner.close();
+        
+        System.out.println("Najbliższa liczba palindromiczna: " + findNearestPalindrome(number));
+    }
+    
+    public static int findNearestPalindrome(int num) {
+        int lower = num;
+        int higher = num;
+        
+        while (true) {
+            if (isPalindrome(lower)) return lower;
+            if (isPalindrome(higher)) return higher;
+            
+            lower--;
+            higher++;
         }
     }
-    return true;
-}
-
-int main() {
-    int liczba;
-    cout << "Podaj liczbę: ";
-    cin >> liczba;
-
-    int mniejsza = liczba - 1;
-    int wieksza = liczba + 1;
-
-    // Szukanie najbliższego palindromu w dół
-    while (!czyPalindrom(mniejsza)) {
-        mniejsza--;
+    
+    public static boolean isPalindrome(int num) {
+        String str = Integer.toString(num);
+        String reversed = new StringBuilder(str).reverse().toString();
+        return str.equals(reversed);
     }
-
-    // Szukanie najbliższego palindromu w górę
-    while (!czyPalindrom(wieksza)) {
-        wieksza++;
-    }
-
-    if (liczba - mniejsza <= wieksza - liczba) {
-        cout << "Najbliższa liczba palindromiczna: " << mniejsza << endl;
-    } else {
-        cout << "Najbliższa liczba palindromiczna: " << wieksza << endl;
-    }
-
-    return 0;
 }
