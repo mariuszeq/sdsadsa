@@ -1,21 +1,25 @@
-#include <iostream>
-#include <string>
-using namespace std;
+import java.util.Scanner;
 
-int main() {
-    string slowo;
-    cout << "Podaj słowo do zaszyfrowania: ";
-    cin >> slowo;
-
-    int klucz = 3;
-    for (int i = 0; i < slowo.length(); i++) {
-        if (isalpha(slowo[i])) {
-            char baza = isupper(slowo[i]) ? 'A' : 'a';
-            slowo[i] = (slowo[i] - baza + klucz) % 26 + baza;
-        }
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Wprowadź słowo do zaszyfrowania: ");
+        String word = scanner.nextLine();
+        scanner.close();
+        
+        System.out.println("Zaszyfrowane słowo: " + caesarCipher(word, 3));
     }
-
-    cout << "Zaszyfrowane słowo: " << slowo << endl;
-
-    return 0;
+    
+    public static String caesarCipher(String text, int shift) {
+        StringBuilder result = new StringBuilder();
+        for (char i : text.toCharArray()) {
+            if (Character.isLetter(i)) {
+                char base = Character.isUpperCase(i) ? 'A' : 'a';
+                result.append((char) ((i - base + shift) % 26 + base));
+            } else {
+                result.append(i);
+            }
+        }
+        return result.toString();
+    }
 }
