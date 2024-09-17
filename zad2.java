@@ -1,27 +1,17 @@
-#include <iostream>
-#include <string>
-using namespace std;
+import java.util.Scanner;
 
-int main() {
-    string slowo;
-    cout << "Podaj słowo: ";
-    cin >> slowo;
-
-    bool palindrom = true;
-    int n = slowo.length();
-
-    // Sprawdzenie, czy słowo czyta się tak samo od przodu i od tyłu
-    for (int i = 0; i < n / 2; i++) {
-        if (slowo[i] != slowo[n - i - 1]) {
-            palindrom = false;
-            break;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Wprowadź słowo: ");
+        String word = scanner.nextLine();
+        scanner.close();
+        
+        String reversedWord = new StringBuilder(word).reverse().toString();
+        if (word.equals(reversedWord)) {
+            System.out.println("Słowo jest palindromem.");
+        } else {
+            System.out.println("Słowo nie jest palindromem.");
         }
     }
-
-    if (palindrom) {
-        cout << "Słowo jest palindromem." << endl;
-    } else {
-        cout << "Słowo nie jest palindromem." << endl;
-    }
-    return 0;
 }
