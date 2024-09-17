@@ -1,10 +1,8 @@
-#include <iostream>
-using namespace std;
-
-int main() {
-    // Pętla, która wypisuje wszystkie liczby dwucyfrowe parzyste
-    for (int i = 10; i <= 98; i += 2) {
-        cout << i << " ";
+public class Main {
+    public static void main(String[] args) {
+        for (int i = 10; i <= 99; i += 2) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
     }
-    return 0;
 }
